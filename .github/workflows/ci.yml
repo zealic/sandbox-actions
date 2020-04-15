@@ -3,10 +3,12 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  checkout:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository
       uses: actions/checkout@v2
-    - name: Ensure docker env
-      uses: docker://alpine:3.11
+  build:
+    container:
+      image: zealic:alpine
+      command: env
