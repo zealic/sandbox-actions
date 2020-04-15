@@ -17,6 +17,7 @@ jobs:
         tag_with_ref: true
   tests:
     needs: build
+    runs-on: ubuntu-latest
     container:
       image: zealic/sandbox
     steps:
