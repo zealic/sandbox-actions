@@ -11,20 +11,20 @@ jobs:
     - name: docker-build-push
       uses: docker/build-push-action@v1
       with:
-        username: zealic
+        username: ${{ github.repository_owner }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: zealic/sandbox
+        repository: ${{ github.repository_owner }}/sandbox
         tag_with_ref: true
     - name: run
-      run:
+      run: |
         docker info
-        docker run -it --rm zealic/sandbox uname -a
+        docker run -t --rm ${{ github.repository_owner }}/sandbox uname -a
 
   tests:
     needs: build
     runs-on: ubuntu-latest
     container:
-      image: zealic/sandbox
+      image: ${{ github.repository_owner }}/sandbox
     steps:
     - name: show env
       run:
