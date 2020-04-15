@@ -11,7 +11,15 @@ jobs:
     - name: docker-build-push
       uses: docker/build-push-action@v1
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
+        username: zealic
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: zealic/sandbox
         tag_with_ref: true
+  tests:
+    needs: build
+    container:
+      image: zealic/sandbox
+    steps:
+    - name: show env
+      run:
+        env
