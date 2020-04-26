@@ -40,5 +40,5 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: run
       run: |
-        docker build -t docker.pkg.github.com/${{ github.repository }}:github-pkg .
-        docker push docker.pkg.github.com/${{ github.repository }}:github-pkg
+        docker build -t docker.pkg.github.com/${{ github.repository }}/github-pkg .
+        docker push docker.pkg.github.com/${{ github.repository }}/github-pkg
