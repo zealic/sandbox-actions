@@ -33,6 +33,10 @@ jobs:
     steps:
     - name: Check out repository
       uses: actions/checkout@v2
+    - uses: azure/docker-login@v1
+      with:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: run
       run: |
         docker build -t docker.pkg.github.com/${{ github.repository }}:github-pkg .
