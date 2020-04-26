@@ -36,4 +36,4 @@ jobs:
     - name: run
       run: |
         docker build -t docker.pkg.github.com/${{ github.repository }}:github-pkg .
-        docker push ${{ github.repository }}:github-pkg
+        docker push docker.pkg.github.com/${{ github.repository }}:github-pkg
