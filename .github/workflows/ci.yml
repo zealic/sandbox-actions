@@ -28,3 +28,12 @@ jobs:
       run: |
         docker build -t ${{ github.repository }}:custom .
         docker push ${{ github.repository }}
+  build-with-docker-github:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    - name: run
+      run: |
+        docker build -t docker.pkg.github.com/${{ github.repository }}:github-pkg .
+        docker push ${{ github.repository }}
