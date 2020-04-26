@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  build-with-docker-offical:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository
@@ -15,17 +15,16 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ github.repository_owner }}/sandbox
         tag_with_ref: true
+  build-with-docker-custom:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    - uses: azure/docker-login@v1
+      with:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
     - name: run
       run: |
-        docker info
-        docker run -t --rm ${{ github.repository_owner }}/sandbox uname -a
-
-  tests:
-    needs: build
-    runs-on: ubuntu-latest
-    container:
-      image: ${{ github.repository_owner }}/sandbox
-    steps:
-    - name: show env
-      run:
-        env
+        docker build -t ${{ github.repository }}:custom
+        docker push ${{ github.repository }}
