@@ -26,5 +26,5 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: run
       run: |
-        docker build -t ${{ github.repository }}:custom
+        docker build -t ${{ github.repository }}:custom .
         docker push ${{ github.repository }}
