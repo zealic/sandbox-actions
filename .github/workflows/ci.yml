@@ -51,6 +51,6 @@ jobs:
       run: |
         env
         docker info
-        sudo mobprobe nbd
+        sudo modprobe nbd
         lsmod
 
