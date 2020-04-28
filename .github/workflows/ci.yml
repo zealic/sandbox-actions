@@ -42,3 +42,13 @@ jobs:
       run: |
         docker build -t docker.pkg.github.com/${{ github.repository }}/github-pkg .
         docker push docker.pkg.github.com/${{ github.repository }}/github-pkg
+  build-env:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    - name: run
+      run: |
+        env
+        docker info
+        lsmod
