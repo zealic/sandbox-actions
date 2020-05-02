@@ -52,3 +52,16 @@ jobs:
         asset_path: ./.github/workflows/release.yml
         asset_name: release.yml
         asset_content_type: text/yaml
+  docker-image:
+    needs: build-release
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: docker-build-push
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ github.repository }}
+        tag_with_ref: true
