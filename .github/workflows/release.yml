@@ -39,7 +39,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./github/workflows/ci.yml
+        asset_path: ./.github/workflows/ci.yml
         asset_name: ci.yml
         asset_content_type: text/yaml
     - name: Upload Release Assets 2
@@ -49,6 +49,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./github/workflows/release.yml
+        asset_path: ./.github/workflows/release.yml
         asset_name: release.yml
         asset_content_type: text/yaml
