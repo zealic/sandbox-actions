@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - [0-9]+.[0-9]+.[0-9]+
+      - "[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   build-release:
@@ -18,8 +18,8 @@ jobs:
         echo $description
         description="${description//'%'/'%25'}"
         description="${description//$'\n'/'%0A'}"
-        description="${description//$'\r'/'%0D'}" 
-        echo "::set-output name=description::$description" 
+        description="${description//$'\r'/'%0D'}"
+        echo "::set-output name=description::$description"
     - name: Create Release
       id: create_release
       uses: actions/create-release@latest
