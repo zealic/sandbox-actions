@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  load-kmod:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    - name: run
+      run: |
+        env
+        docker info
+        sudo modprobe nbd
+        lsmod
